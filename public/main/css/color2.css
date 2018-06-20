@@ -1,0 +1,57 @@
+.btn-login,
+.learn-more,
+.scrollup,
+.single-service-item .top-border:before,
+.single-service-item .right-border:before,
+.single-service-item .bottom-border:before,
+.single-service-item:hover .service-left-bg,
+.more-about-us .main-content .main-wrapper h4:before,
+.more-about-us .main-content .main-wrapper .button-wrapper a,
+.signup-section,
+.has-line-center:after, 
+.has-line:after,
+.services-block-four .inner-box .icon-box:after,
+.services-block-four .inner-box .icon-box:before
+
+{
+	background: #ff693a !important;
+}
+
+
+
+.btn-login,
+.btn-login:focus,
+.btn-login:hover,
+.learn-more,
+.testimonial .testimonial-item:hover .content,
+.main-footer .newsletter-widget input:focus,
+.main-footer .newsletter-widget select:focus{
+	border-color: #ff693a !important;
+}
+
+
+.btn-login:focus,
+.btn-login:hover,
+.amazing-features .green-card i,
+.service-text h4 a:hover,
+.article__icon,
+.services-block-four .inner-box h3 a:hover,
+.services-block-four .inner-box .read-more,
+.testimonial .testimonial-item .content span,
+.testimonial .testimonial-item .author p,
+.services-block-four .inner-box .icon-box,
+.video-play,
+.main-footer .contact-info li .icon,
+.main-footer .newsletter-widget .send-btn:hover
+{
+	color: #ff693a !important;
+}
+
+.single-service-item,
+.service-left-bg {
+	border-left-color: #ff693a !important;
+}
+
+
+
+

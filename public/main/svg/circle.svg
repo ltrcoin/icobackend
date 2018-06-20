@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="397px" height="397px" viewBox="0 0 397 397" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Oprette </title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="179.5" cy="179.5" r="179.5"></circle>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="-2" dy="8" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="9.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <linearGradient x1="85.7613032%" y1="83.5239362%" x2="-38.4815492%" y2="-36.7627992%" id="linearGradient-3">
+            <stop stop-color="#00C9FF" offset="0%"></stop>
+            <stop stop-color="#47FF58" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-HD" transform="translate(-520.000000, -4489.000000)">
+            <g id="News-feed" transform="translate(0.000000, 4500.000000)">
+                <g id="Oprette-" transform="translate(541.000000, 0.000000)">
+                    <g id="Oval-2-Copy-16">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                    <path d="M179.5,287 C120.129389,287 72,238.870611 72,179.5 C72,120.129389 120.129389,72 179.5,72 C238.870611,72 287,120.129389 287,179.5 C287,238.870611 238.870611,287 179.5,287 Z M179.5,250.404255 C218.659339,250.404255 250.404255,218.659339 250.404255,179.5 C250.404255,140.340661 218.659339,108.595745 179.5,108.595745 C140.340661,108.595745 108.595745,140.340661 108.595745,179.5 C108.595745,218.659339 140.340661,250.404255 179.5,250.404255 Z" id="Combined-Shape-Copy-16" fill="url(#linearGradient-3)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

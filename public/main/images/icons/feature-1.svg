@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="180px" height="180px" viewBox="0 0 180 180" enable-background="new 0 0 180 180" xml:space="preserve">
+<g id="Page-1">
+	<g id="Home" transform="translate(-547.000000, -631.000000)">
+		<g id="SECTION-1" transform="translate(530.000000, 608.000000)">
+			<g id="illu-sign-up">
+				<path id="Rectangle-11" fill="#F1F7FB" stroke="#585D75" stroke-width="2" d="M35,146.998c0-1.104,0.901-1.998,2.008-1.998
+					h139.984c1.109,0,2.008,0.887,2.008,1.998V149c0,2.209-1.795,4-4.002,4H39.001c-2.21,0-4.001-1.795-4.001-4V146.998z"/>
+				<path id="Rectangle-11_1_" fill="#F1F7FB" stroke="#585D75" stroke-width="2" d="M45,76V65.99v0.25
+					c0-2.756,2.231-5.24,4.995-5.24h114.01c2.759,0,4.995,2.247,4.995,5.003V145H45v-27 M45,111V94"/>
+				<g id="Group-2" transform="translate(35.000000, 47.000000)">
+					<path fill="none" stroke="#585D75" stroke-width="2" d="M16,24.999V97v1h1h110h1v-1V24.999c0-1.656-1.346-2.999-3.003-2.999
+						H19.003C17.337,22,16,23.339,16,24.999z"/>
+					<defs>
+						<filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="16" y="22" width="112" height="60.5">
+							<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+						</filter>
+					</defs>
+					<mask maskUnits="userSpaceOnUse" x="16" y="22" width="112" height="60.5" id="mask-2_2_">
+						<g filter="url(#Adobe_OpacityMaskFilter)">
+							<path id="path-1_2_" fill="#FFFFFF" d="M17,24.999C17,23.895,17.885,23,19.003,23h105.994c1.106,0,2.003,0.896,2.003,1.999
+								V97H17V24.999z"/>
+						</g>
+					</mask>
+					<path id="Rectangle-11_2_" mask="url(#mask-2_2_)" fill="#D9E2F0" d="M16,23.996C16,22.894,16.901,22,17.992,22h108.016
+						c1.101,0,1.992,0.904,1.992,1.992v34.582L16,82.5V23.996z"/>
+				</g>
+				<g id="Oval-3">
+					<g>
+						<circle id="path-3_11_" cx="166" cy="64" r="17"/>
+					</g>
+					<g>
+						<circle id="path-3_1_" fill="#FF693A" stroke="#585D75" stroke-width="2" cx="166" cy="64" r="17"/>
+					</g>
+				</g>
+				<g id="Group-9" transform="translate(61.000000, 63.000000)">
+					<g id="Rectangle-12">
+						<g>
+							<path id="path-5_11_" d="M22,23h48c2.762,0,5,2.239,5,5v80c0,2.762-2.238,5-5,5H22c-2.761,0-5-2.238-5-5V28
+								C17,25.239,19.239,23,22,23z"/>
+						</g>
+						<g>
+							<path id="path-5_1_" fill="#FFFFFF" stroke="#585D75" stroke-width="2" d="M22,23h48c2.762,0,5,2.239,5,5v80
+								c0,2.762-2.238,5-5,5H22c-2.761,0-5-2.238-5-5V28C17,25.239,19.239,23,22,23z"/>
+						</g>
+					</g>
+					<path id="Rectangle-13" fill="#E2E6F1" d="M27,43h38c0.553,0,1,0.447,1,1v8c0,0.553-0.447,1-1,1H27c-0.552,0-1-0.447-1-1v-8
+						C26,43.447,26.448,43,27,43z"/>
+					<path id="Rectangle-13_1_" fill="#E2E6F1" d="M37,33h18c0.553,0,1,0.448,1,1v2c0,0.553-0.447,1-1,1H37c-0.552,0-1-0.447-1-1v-2
+						C36,33.448,36.448,33,37,33z"/>
+					<path id="Rectangle-13_2_" fill="#E2E6F1" d="M27,58h38c0.553,0,1,0.447,1,1v8c0,0.553-0.447,1-1,1H27c-0.552,0-1-0.447-1-1v-8
+						C26,58.447,26.448,58,27,58z"/>
+					<path id="Rectangle-13_3_" fill="#E2E6F1" d="M27,73h38c0.553,0,1,0.447,1,1v8c0,0.553-0.447,1-1,1H27c-0.552,0-1-0.447-1-1v-8
+						C26,73.447,26.448,73,27,73z"/>
+					<path id="Rectangle-13_4_" fill="#FF693A" d="M27,93h38c0.553,0,1,0.447,1,1v8c0,0.553-0.447,1-1,1H27c-0.552,0-1-0.447-1-1v-8
+						C26,93.447,26.448,93,27,93z"/>
+				</g>
+				<polyline id="Path-21" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="
+					160.5,65.5 165,69 171.5,60 				"/>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>
