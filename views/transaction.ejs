@@ -1,0 +1,88 @@
+<% include header %>
+<link rel="stylesheet" type="text/css" href="/js/app-assets/css/pages/transactions.css">
+<div class="app-content content">
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-8 col-12 mb-2 breadcrumb-new">
+          <h3 class="content-header-title mb-0 d-inline-block">Transactions</h3>
+          <div class="row breadcrumbs-top d-inline-block">
+            <div class="breadcrumb-wrapper col-12">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active">Transactions
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <div class="content-header-right col-md-4 col-12 d-none d-md-inline-block">
+          <div class="btn-group float-md-right"><a class="btn-gradient-secondary btn-sm white" href="/buyico">Buy now</a></div>
+        </div>
+      </div>
+      <div class="content-body">
+          <div id="transactions">
+            <div class="transactions-table-th d-none d-md-block">
+                <div class="col-12">
+                    <div class="row px-1">
+                        <div class="col-md-4 col-12 py-1">
+                            <p class="mb-0">TxHash</p>
+                        </div>
+                        <div class="col-md-1 col-12 py-1">
+                                <p class="mb-0">Type</p>
+                            </div>
+                        <div class="col-md-3 col-12 py-1">
+                            <p class="mb-0">From</p>
+                        </div>
+                        <div class="col-md-3 col-12 py-1">
+                            <p class="mb-0">To</p>
+                        </div>
+                        <div class="col-md-1 col-12 py-1">
+                            <p class="mb-0">Value</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="transactiontable" class="transactions-table-tbody">
+                
+            </div>
+          </div>
+      </div>
+    </div>
+</div>
+<script id="rendertransaction" type="text/x-handlebars-template">
+    <section class="card pull-up">
+        <div class="card-content">
+            <div  class="card-body">
+                    <div  class="col-12">
+                            <div class="row">
+                                    <div class="col-md-4 col-12 py-1">
+                                        <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700"></span>{{hash}}</p>
+                                    </div>
+                                    <div class="col-md-1 col-12 py-1">
+                                            <span class="d-inline-block d-md-none text-bold-700"></span><a href="#" class="mb-0 btn-sm btn btn-outline-{{class}} round">{{type}}</a>
+                                        </div>
+                                    <div class="col-md-3 col-12 py-1">
+                                        <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700"></span>{{from}}</p>
+                                    </div>
+                                    <div class="col-md-3 col-12 py-1">
+                                            <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700"></span>{{to}}</p>
+                                        </div>
+                                    <div class="col-md-1 col-12 py-1">
+                                        <p class="mb-0"><span class="d-inline-block d-md-none text-bold-700"></span> <i class="icon-layers"></i> <strong>{{value}}</strong></p>
+                                    </div>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+    
+</script>
+<script src="/js/app-assets/vendors/js/vendors.min.js" type="text/javascript"></script>
+<script src="/js/app-assets/js/core/app-menu.js" type="text/javascript"></script>
+<script src="/js/app-assets/js/core/app.js" type="text/javascript"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/mustache.js"></script>
+<script src="/js/jquery.cookie.js"></script>
+<script src="/js/transaction.js" type="text/javascript"></script>
+<% include footer %>

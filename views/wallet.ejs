@@ -1,0 +1,153 @@
+<% include header %>
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+
+<div class="app-content content">
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-6 col-12 mb-2 breadcrumb-new">
+                <h3 class="content-header-title mb-0 d-inline-block">Wallet</h3>
+                <div class="row breadcrumbs-top d-inline-block">
+                <div class="breadcrumb-wrapper col-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Dashboard</a>
+                        </li>
+                        <li class="breadcrumb-item active">Wallet
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <a id="createETHWallet" href="#">Create ETH address</a>
+                        </li>
+                    </ol>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-4 d-md-inline-block">
+                
+            </div>
+        </div>
+        <div class="content-detached content-left">
+            <div class="content-body">
+                <div>
+                    <div class="wallet-table-th d-none d-md-block">
+                        <div class="row">
+                            <div class="col-md-6 col-12 py-1">
+                                <p class="mt-0 text-capitalize">Cryptocurrency</p>
+                            </div>
+                            <div class="col-md-2 col-12 py-1 text-center">
+                                <p class="mt-0 text-capitalize">Available</p>
+                            </div>
+                            <div class="col-md-4 col-12 py-1 text-center">
+                                <p class="mt-0 text-capitalize">Transect</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ETH -->
+                    <div id="wallet">
+                        
+                    </div>
+                    <!--/ ETH -->
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-detached sidebar-right" ="">
+            <div class="sidebar">
+                <div id="wallet-sidebar" class="sidebar-content">
+                    <div class="row">
+                        <p class="py-1 text-capitalize col-12">Your balance</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="card-title text-center">ICO Tokens</h6>            
+                        </div>
+                        <div class="card-content collapse show">
+                            <div class="card-body">
+
+                                <div class="text-center row clearfix mb-2">
+                                    <div class="col-12">
+                                        <i class="icon-layers font-large-3 bg-warning bg-glow white rounded-circle p-3 d-inline-block"></i>
+                                    </div>
+                                </div>
+                                <h3 id="numtokenbig" class="text-center">0 LTR</h3>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-de mb-0">                    
+                                    <tbody>
+                                    <tr>
+                                        <td>LTR Token</td>
+                                        <td id="numtoken"><i class="icon-layers"></i> 0 LTR</td>
+                                    </tr>
+                                    <tr>
+                                        <td>LTR Price</td>
+                                        <td id="numusd"><i class="cc USDT-alt"></i> 0 USD</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+<script id="renderwallet" type="text/x-handlebars-template">
+    <section class="card pull-up">
+        <div class="card-content">
+            <div class="card-body">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-md-6 col-12 py-1">
+                            <div class="media">
+                                <i class="cc {{type}} mr-2 font-large-2 blue accent-3"></i>
+                                <div class="media-body">
+                                    <h5 class="mt-0 text-capitalize">{{description}}</h5>
+                                    <p class="text-muted mb-0 font-small-3 wallet-address">{{address}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-12 py-1 text-center">
+                            <h6>{{balance}} {{type}}</h6>
+                            <p class="text-muted mb-0 font-small-3">~ ${{exchangeUSD}}</p>
+                        </div>
+                        <div class="col-md-2 col-12 py-1 text-center">
+                            <a href="#" class="line-height-3">Deposit</a>
+                        </div>
+                        <div class="col-md-2 col-12 py-1 text-center">
+                            <a href="#" class="line-height-3">Withdraw</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>          
+    </section>
+    <div class="modal fade" id="purchaseUSDTModalLabel" tabindex="-1" role="dialog" aria-labelledby="purchaseUSDTModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="purchaseModalLabel">Kết quả</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card-content">
+                            <div class="card-body">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-md-2 col-12 d-none d-md-block">
+                                            <h3 id="resultcreatewallet"></h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/mustache.js"></script>
+<script src="/js/jquery.cookie.js"></script>
+<script src="/js/wallet.js" type="text/javascript"></script>
+<% include footer %>
