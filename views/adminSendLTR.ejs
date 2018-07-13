@@ -1,0 +1,24 @@
+<% include adminheader %>
+<form class="col-md-5">
+    <div class="form-group">
+        <label for="addressLTR">Wallet address:</label>
+        <input id="addressLTR" class="form-control" type="text" />
+    </div>
+    <div class="form-group">
+        <label for="valueLTR">Value:</label>
+        <input id="valueLTR" class="form-control" type="text" >
+    </div>
+    <button id="send" type="button" class="btn btn-primary">send</button>
+    <p id="notice"></p>
+    <script>
+        $('#send').click(function() {
+            $.post('/admin/api/admin_send_LTR',{
+                addressReceive: $('#addressLTR').val(),
+                numofeth: $('#valueLTRs').val(),
+            },function(data){
+                $('#notice>').text(data);
+            })
+        });
+    </script>
+</form>
+<% include adminfooter %>
