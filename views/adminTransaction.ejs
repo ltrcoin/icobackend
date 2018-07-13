@@ -1,0 +1,202 @@
+<% include adminheader %>
+<script src="/js/moment.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+<div class="row">
+        <%
+            function formatDate(date) {
+                var hours = date.getHours();
+                var minutes = date.getMinutes();
+                var ampm = hours >= 12 ? 'pm' : 'am';
+                hours = hours % 12;
+                hours = hours ? hours : 12; // the hour '0' should be '12'
+                minutes = minutes < 10 ? '0'+minutes : minutes;
+                var strTime = hours + ':' + minutes + ' ' + ampm;
+                return date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear() + "  " + strTime;
+            }
+        %>
+        <form action="/admin/adminTransaction" method="POST">
+            <div class='col-md-3'>
+                <div class="form-group">
+                    <div class='input-group date' id='from'>
+                        <input type='text' class="form-control" name="from" value="<%=from%>"/>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class='col-md-3'>
+                    <div class="form-group">
+                        <div class='input-group date' id='to'>
+                            <input type='text' class="form-control" name="to" value="<%=to%>"/>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-primary">Get data</button>
+            </div>
+        </form>
+            <div class="col-md-1">
+                <button id="check" type="button" class="btn btn-primary">Check data</button>
+            </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#from').datetimepicker({
+                    defaultDate: "07/01/2018",
+                    format: 'MM/DD/YYYY',
+                    disabledDates: [
+                        moment("07/01/2018"),
+                        new Date(2018, 7 - 1, 01),
+                        "07/01/2018"
+                    ]
+                });
+                $('#to').datetimepicker({
+                    defaultDate: "07/01/2018",
+                    format: 'MM/DD/YYYY',
+                    disabledDates: [
+                        moment("07/01/2018"),
+                        new Date(2018, 7 - 1, 01),
+                        "07/01/2018"
+                    ]
+                });
+            });
+        </script>
+</div>
+<div class="row">
+        <div class='col-md-12'>
+                <table id="table" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th>SUM ETH: <span id="sumeth"></span></th>
+                                <th>SUM LTR: <span id="sumltr"></span></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Email</th>
+                                <th>Value_ETH</th>
+                                <th>Value_LTR</th>
+                                <th>txhash_ETH</th>
+                                <th>txhash_LTR</th>
+                                <th>Date_Created</th>
+                                <th>#</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (var i = 0; i < data.length; i++) { %>
+                                <tr>
+                                    <td style="word-wrap: break-word;min-width: 10px;max-width: 10px;"><%= i + 1%></th>
+                                    <td style="word-wrap: break-word;min-width: 100px;max-width: 100px;"><%=data[i].email%></th>
+                                    <td style="word-wrap: break-word;min-width: 30px;max-width: 30px;"><%=data[i].value_ETH%></th>
+                                    <td style="word-wrap: break-word;min-width: 30px;max-width: 30px;"><%=data[i].value_LTR%></th>
+                                    <td style="word-wrap: break-word;min-width: 150px;max-width: 150px;">
+                                        <a target="_blank" href="https://etherscan.io/tx/<%=data[i].txhash_ETH%>"><%=data[i].txhash_ETH%></a>
+                                    </th>
+                                    <td style="word-wrap: break-word;min-width: 150px;max-width: 150px;">
+                                        <a target="_blank" href="https://etherscan.io/tx/<%=data[i].txhash_LTR%>"><%=data[i].txhash_LTR%></a>
+                                    </th>
+                                    <td style="word-wrap: break-word;min-width: 100px;max-width: 100px;"><%=formatDate(data[i].created_at)%></th>
+                                    <td style="word-wrap: break-word;min-width: 50px;max-width: 50px;">
+                                        <button type="button" class="btn btn-primary edittxhash" >Sửa</button>
+                                        <input type="hidden" value="<%=data[i]._id%>" />
+                                    </th>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+        </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Sửa TxHash</h4>
+        </div>
+        <div class="modal-body">
+            ID: <span id="txhashid"></span>
+            <input id="txhashtext" value="txhash" type="text" class="form-control" style="text-align: left"/>
+        </div>
+        <div class="modal-footer">
+            <span id="notic"></span>
+            <button id="savetxhash" type="button" class="btn btn-default" >Save</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+</div>
+<script>
+        $( "#check" ).click(function() {
+            (async () => {
+                    var rowCount = $('#table tbody tr').length;
+                    for(i=0;i<=rowCount-1;i++){
+                        var txhasheth = $(`#table tbody tr:eq(${i}) td:nth-child(5) a`);
+                        var txhashltr = $(`#table tbody tr:eq(${i}) td:nth-child(6) a`);
+                        await $.get(`https://api.etherscan.io/api?module=transaction&action=gettxreceiptstatus&txhash=${txhasheth.text()}&apikey=YourApiKeyToken`,function(data){
+                                if(data){
+                                    if(data.result.status == '1') txhasheth.append('<span class="btn btn-success">OK</span>');
+                                    else if(data.result.status == '0') txhasheth.append('<span class="btn btn-danger">ERROR</span>');
+                                    else if(data.result.status == '') txhasheth.append('<span class="btn btn-danger">No transaction</span>');
+                                }
+                            });
+                    
+                        await $.get(`https://api.etherscan.io/api?module=transaction&action=gettxreceiptstatus&txhash=${txhashltr.text()}&apikey=YourApiKeyToken`,function(data){
+                            if(data){
+                                if(data.result.status == '1') txhashltr.append('<span class="btn btn-success">OK</span>');
+                                else if(data.result.status == '0') txhashltr.append('<span class="btn btn-danger">ERROR</span>');
+                                else if(data.result.status == '') txhashltr.append('<span class="btn btn-danger">No transaction</span>');
+                            }
+                        })
+                    }
+                    var _sumeth = 0,_sumltr = 0;
+                    for(j=0;j<=rowCount-1;j++){
+                        var texteth = await $(`#table tbody tr:eq(${j}) td:nth-child(5) span`).text(); 
+                        var textltr = await $(`#table tbody tr:eq(${j}) td:nth-child(6) span`).text(); 
+                        var valeth = await $(`#table tbody tr:eq(${j}) td:nth-child(3)`).text();
+                        var valltr = await $(`#table tbody tr:eq(${j}) td:nth-child(4)`).text();
+                        if(texteth == 'OK' && textltr == 'OK'){
+                            _sumeth = await _sumeth + parseFloat(valeth);
+                            _sumltr = await _sumltr + parseFloat(valltr);
+                        }
+                    }
+                    $('#sumeth').text(_sumeth);
+                    $('#sumltr').text(_sumltr);
+            })();
+        });
+    
+        /// Lấy txhash khi nhấn nút
+        $('.edittxhash').click(function() {
+            var txhashLTR = $(this).parent("td").parent("tr").children("td:nth-child(6)").text();
+            var txhashidLTR = $(this).parent("td").children("input").val();
+            $('#txhashtext').val(txhashLTR.trim());
+            $('#txhashid').text(txhashidLTR.trim());
+            $('#myModal').modal('show');
+        })
+        // Lưu txhash
+        $('#savetxhash').click(function() {
+            var id = $('#txhashid').text();
+            var txhash = $('#txhashtext').val();
+            $.post('/admin/api/updateTxhash',{id:id,txhashltr:txhash},function(data){
+                if(data == "ERROR"){
+                    $('#notic').text("ERROR");
+                }else if(data == "OK"){
+                    $('#notic').text("OK");
+                }
+            })
+        })
+    </script>
+<% include adminfooter %>
+
