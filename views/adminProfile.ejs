@@ -1,0 +1,122 @@
+<% include adminheader %>
+
+<div style="margin-top:40px">
+    <% for (var i = 0; i < data.length; i++) { %>
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" href="#<%=data[i]._id%>"><%= data[i].email%></a>
+            </h4>
+            </div>
+            <div id="<%=data[i]._id%>" class="panel-collapse collapse">
+            <div class="panel-body">
+                <% if(data[i].cmnd_front_confimed == false) {%>
+                <div class="col-md-4">
+                    <div class="row">
+                        Front: <img src="/img/uploads/<%= data[i].cmnd_front%>" class="img-rounded" style="width:360px;height:300px;"/>
+                    </div>
+                </div>
+                <% } %>
+                <% if(data[i].cmnd_back_confimed == false) {%>
+                <div class="col-md-4">
+                    Behind:<img src="/img/uploads/<%= data[i].cmnd_back%>" class="img-rounded" style="width:360px;height:300px;"/>
+                </div>
+                <% } %>
+                <% if(data[i].cmnd_self_confimed == false) {%>
+                <div class="col-md-4">
+                    Self: <img src="/img/uploads/<%= data[i].cmnd_self%>" class="img-rounded" style="width:360px;height:300px;"/>
+                </div>
+                <% } %>
+                <div class="col-md-12">
+                    <div class="row">
+                        <form class="radio-inline" style="line-height: 30px;padding-left: 0px !important">
+                            <div class="form-group">
+                                <label class="radio-inline" >
+                                    <input id="front_<%=data[i]._id%>" type="checkbox" value="Identity Front card is inexplicit;" style="vertical-align: middle;padding-left: 0px !important">Identity Front card is inexplicit
+                                    <span id="notictfront_<%=data[i]._id%>"></span>
+                                </label>
+                                <label class="radio-inline">
+                                    <input id="back_<%=data[i]._id%>" type="checkbox" value="Identity Backside card is inexplicit;" style="vertical-align: middle;padding-left: 0px !important">Identity Backside card is inexplicit
+                                    <span id="notictback_<%=data[i]._id%>"></span>
+                                </label>
+                                <label class="radio-inline">
+                                    <input id="self_<%=data[i]._id%>" type="checkbox" value="Identity Self card is inexplicit;" style="vertical-align: middle;padding-left: 0px !important">Identity Self is inexplicit
+                                    <span id="notictself_<%=data[i]._id%>"></span>
+                                </label>
+                                <script>
+                                    $('#front_<%=data[i]._id%>').click(function() {
+                                        if($('#front_<%=data[i]._id%>').is(':checked')) {
+                                            var a = $('#reason_<%=data[i]._id%>').val();
+                                            var b = $('#front_<%=data[i]._id%>').val();
+                                            $('#reason_<%=data[i]._id%>').val(a + b);
+                                        }
+                                    });
+                                    $('#back_<%=data[i]._id%>').click(function() {
+                                        if($('#back_<%=data[i]._id%>').is(':checked')) {
+                                            var a = $('#reason_<%=data[i]._id%>').val();
+                                            var b = $('#back_<%=data[i]._id%>').val();
+                                            $('#reason_<%=data[i]._id%>').val(a + b);
+                                        }
+                                    });
+                                    $('#self_<%=data[i]._id%>').click(function() {
+                                        if($('#self_<%=data[i]._id%>').is(':checked')) {
+                                            var a = $('#reason_<%=data[i]._id%>').val();
+                                            var b = $('#self_<%=data[i]._id%>').val();
+                                            $('#reason_<%=data[i]._id%>').val(a + b);
+                                        }
+                                    });
+                                </script>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-12" style="margin-bottom: 15px">
+                    <div class="row">
+                            <label>reason</label>
+                            <input id="reason_<%=data[i]._id%>" type="text" value="<%=data[i].reason_not_confirm%>" style="width: 800px;"/>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <button id="unconfirmall_<%=data[i]._id%>"type="button" class="btn btn-danger">unconfirm</button>
+                        <span id="notictunconfirmall_<%=data[i]._id%>"></span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button id="confirmall_<%=data[i]._id%>"type="button" class="btn btn-primary">confirm all</button>
+                        <span id="notictconfirmall_<%=data[i]._id%>"></span>
+                        <script>
+                            $('#unconfirmall_<%=data[i]._id%>').click(function() {
+                                $.post('/admin/api/unconfirmed',{
+                                    id:'<%=data[i]._id%>',
+                                    content: $('#reason_<%=data[i]._id%>').val()
+                                },function(data){
+                                    if(data == "ERROR"){
+                                        $('#notictunconfirmall_<%=data[i]._id%>').text("ERROR");
+                                    }else if(data == "OK"){
+                                        $('#notictunconfirmall_<%=data[i]._id%>').text("OK");
+                                    }
+                                })
+                            });
+                            $('#confirmall_<%=data[i]._id%>').click(function() {
+                                $.post('/admin/api/confirmall',{
+                                    id:'<%=data[i]._id%>'
+                                },function(data){
+                                    if(data == "ERROR"){
+                                        $('#notictconfirmall_<%=data[i]._id%>').text("ERROR");
+                                    }else if(data == "OK"){
+                                        $('#notictconfirmall_<%=data[i]._id%>').text("OK");
+                                    }
+                                })
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">Panel Footer</div>
+            </div>
+        </div>
+    </div>
+    <% } %>
+</div>
+
+<% include adminfooter %>
