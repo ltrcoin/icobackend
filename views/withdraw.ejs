@@ -1,0 +1,198 @@
+<% include header %>
+<link rel="stylesheet" type="text/css" href="/app-assets/css/pages/dashboard-ico.css">
+<%
+    const numberWithCommas = (x) => {
+        var parts = x.toString().split(".");
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return parts.join(".");
+    }
+%>
+<img id="loading" src="/img/loading.gif" style="display:none;top:50%;left:50%;position:fixed;z-index:999999;" >
+<div class="app-content content">
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-6 col-12 mb-2 breadcrumb-new">
+                <h3 class="content-header-title mb-0 d-inline-block"><%= __('withdraw')%></h3>
+                <div class="row breadcrumbs-top d-inline-block">
+                <div class="breadcrumb-wrapper col-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/"><%= __('dashboard')%></a>
+                        </li>
+                        <li class="breadcrumb-item active"><%= __('withdraw')%>
+                        </li>
+                    </ol>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-4 d-md-inline-block">
+                
+            </div>
+        </div>
+        <div class="content-detached content-left">
+            <div class="content-body">
+                <div id="wallet">
+                    <section class="card">
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form class="form-horizontal form-purchase-token row">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-md-2 col-12 py-1">
+                                                    <fieldset class="form-label-group mb-0">
+                                                        <label><%= __('choosewallet')%></label>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-md-3 col-12 py-1">
+                                                    <fieldset class="form-label-group mb-0">
+                                                        <select id="type" class="custom-select">
+                                                            <option selected value="ltr">LTR <%= __('token')%></option>
+                                                            <option value="eth">ETH</option>
+                                                        </select>
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2 col-12 py-1">
+                                                    <fieldset class="form-label-group mb-0">
+                                                        <label><%= __('walletaddress')%></label>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-md-6 col-12 py-1">
+                                                    <fieldset class="form-label-group mb-0">
+                                                        <input type="text" class="form-control" id="walletaddress" required="" autofocus="" maxlength="42">
+                                                        <label for="walletaddress"><%= __('walletaddress')%></label>
+                                                    </fieldset>
+                                                    <span id="balance"></span>
+                                                </div>
+                                            </div>
+                                            <input id="wallet_address" type="hidden" value="<%=wallet_address%>">
+                                            <div class="row">
+                                                <div class="col-md-2 col-12 py-1">
+                                                    <fieldset class="form-label-group mb-0">
+                                                        <label><%= __('value')%></label>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-md-3 col-12 py-1">
+                                                    <fieldset class="form-label-group mb-0">
+                                                        <input type="text" class="form-control" id="value" required="" autofocus="">
+                                                        <label for="value"><%= __('value')%></label>
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2 col-12 py-1">
+                                                    <fieldset class="form-label-group mb-0">
+                                                        <label></label>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-md-4 col-12 py-1">
+                                                    <fieldset class="form-label-group mb-0">
+                                                        <button id="deposit" type="button" class="btn-gradient-secondary"><%= __('withdraw')%></button>
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2 col-12 py-1">
+                                                    <fieldset class="form-label-group mb-0">
+                                                        <label for="wallet-address"></label>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-md-10 col-12 py-1">
+                                                    <fieldset class="form-label-group mb-0">
+                                                        <p><%= __('withdraw_sentence')%></p>
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>          
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-detached sidebar-right" ="">
+            <div class="sidebar">
+                <div id="wallet-sidebar" class="sidebar-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="card-title text-center">LTR <%= __('token')%></h6>            
+                        </div>
+                        <div class="card-content collapse show">
+                            <div class="card-body">
+                                <div class="text-center row clearfix">
+                                    <div class="col-12">
+                                        <img src="/img/logoorange_100x100.png" style="width:80px;height:70px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="text-center row clearfix">
+                                    <div class="col-12">
+                                        <h3 id="numtokenbig" class="text-center"><%=numberWithCommas(tokenbalance)%> LTR</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-de mb-0">                    
+                                    <tbody>
+                                        <tr>
+                                            <td>LTR <%= __('token')%></td>
+                                            <td><%=numberWithCommas(tokenbalance)%> LTR</td>
+                                        </tr>
+                                        <tr>
+                                            <td>LTR <%= __('price')%></td>
+                                            <td><%=numberWithCommas(tokentousd)%> USD</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ETH</td>
+                                            <td><%=numberWithCommas(balanceeth)%> ETH</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ETH <%= __('price')%></td>
+                                            <td><%=numberWithCommas(exchangeUSD)%> USD</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modalsuccess" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="purchaseUSDTModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="purchaseModalLabel">WITHDRAW</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-md-12 col-12">
+                                        <h5><strong id="noticecheck"></strong></h5>
+                                        <p id="txhashltr"></p>
+                                        <a id="checketherscan" target="_blank" href="#" class="btn btn-warning round mr-1 mb-0"><%= __('check')%></a>
+                                        <button type="button" class="btn btn-warning round mr-1 mb-0" data-dismiss="modal" aria-label="Close">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/jquery.min.js"></script>
+<% include js %>
+<script src="/js/mustache.js"></script>
+<script src="/js/jquery.cookie.js"></script>
+<script src="/js/withdraw.js"></script>
+<% include footer %>
