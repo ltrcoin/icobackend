@@ -183,12 +183,12 @@
 									</div>
 									<div class="ico-sales-status mt30 mb-30 o-hidden">
 										<div class="pull-left">
-											<h3 class="dollar-earning">$1,500,000</h3>
+											<h3 class="dollar-earning" id=total_usd>...</h3>
 											<p style="padding-left:10px">Worth of LTR tokens</p>
 										</div>
 										<div class="pull-right">
-											<h3 class="btc-earning">196 <span>BTC</span></h3>
-											<p>BTC Raised</p>
+											<h3 class="btc-earning" id=total_eth>... <span>ETH</span></h3>
+											<p>ETH Raised</p>
 										</div>
 									</div>
 									<div class="ico-progress">
@@ -198,7 +198,7 @@
 			                           </ul>
 			                           <!-- skill strength -->
 			                           <div class="current-progress">
-			                              <div class="progress-bar has-gradient" style="width: 5%"></div>
+			                              <div class="progress-bar has-gradient" style="width: 1%" id=total_percent></div>
 			                           </div>
 			                           <span class="pull-left">Softcap in 180 days</span>
 			                           <span class="pull-right">LTR Hardcap</span>
@@ -241,7 +241,46 @@
 	<!-- ======================================= 
     ==End main header section==  
     =======================================-->
-
+	
+	<script>
+		var eth=0;
+		function getTotalBalance(){
+			var xmlhttp = new XMLHttpRequest();
+			var url = "https://api.etherscan.io/api?module=account&action=balance&address=0xe26d6ac43432e3aeeea5fce1a523649130d1bd23&tag=latest&apikey=T8NVZH5T23EMVZ4DZXUBGXJ3ZGGWMYI4Y4";
+			
+			xmlhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var myArr = JSON.parse(this.responseText);
+					var rs=myArr.result;
+					rs=rs/1000000000000000000;
+					eth=rs;
+					$("#total_eth").html(eth.toFixed(1)+"<span>ETH</span>");
+					getEthPrice(eth);
+				}
+			};
+			xmlhttp.open("GET", url, true);
+			xmlhttp.send();
+		}
+		function getEthPrice(eth){
+			var xmlhttp = new XMLHttpRequest();
+			var url = "https://api.coinmarketcap.com/v2/ticker/1027/";
+			
+			xmlhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var rs = JSON.parse(this.responseText);
+					var price=rs.data.quotes.USD.price;
+					var total_usd=eth*price;
+					var percent=(total_usd*100)/10000000;
+					if (percent<1) percent=1;
+					$("#total_percent").css("width",percent+"%");
+					$("#total_usd").html(total_usd.toFixed(2)+" usd");
+				}
+			};
+			xmlhttp.open("GET", url, true);
+			xmlhttp.send();
+		}
+		getTotalBalance();
+	</script>
     <!-- ======================================= 
     ==Start Our services section==  
     =======================================-->
@@ -675,11 +714,7 @@
     =======================================-->
 
 
-	<!-- ======================================= 
-    ==Start team section==  
-    =======================================
-
-    <section class="team features" id="team">
+	<section class="team features" id="team">
     	<div class="title-box">
 			<h2 class="title-center">Meetup awesome team</h2>
 			<p class="description text-center">With Professional Tech Expert and Marketing Around The World</p>
@@ -690,134 +725,69 @@
 		     	<div class="col-lg-3 col-md-6 col-sm-12  col-xs-12">
                     <div class="team-member ">
                         <div class="team-img">
-                            <img class="img-responsive center-block" src="/main/images/team/person-1.jpg" alt="">
+                            <img class="img-responsive center-block" src="/main/images/giovanni.jpg" alt="">
                         </div>
                         <div class="team-info">
-                            <h3>Mr A</h3>
+                            <h3>Giovanni Casagrande</h3>
                         </div>
-                        <p class="mb20">CEO</p>
-                        <ul class="social-icons list-inline list-unstyled">
-                            <li><a href="#"><i class="fa fa-facebook icon-bordered icon-primary icon-xs"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter icon-bordered icon-primary icon-xs"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus icon-bordered icon-primary icon-xs"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
+                        <p class="mb20">MA of Bologna University, co-founder of Black Marketing Guru, first growth hacker agency in Italy.</p>
+                        <ul class="social-icons list-inline list-unstyled"> 
+							<li><a href="https://twitter.com/giannicasa" target="blank"><i class="fa fa-twitter icon-bordered icon-primary icon-xs"></i></a></li>
+                            <li><a href="https://www.linkedin.com/in/giovanni-casagrande-%E2%9C%85-219a68159/" target="blank"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12  col-xs-12">
                     <div class="team-member ">
                         <div class="team-img">
-                            <img class="img-responsive center-block" src="/main/images/team/person-2.jpg" alt="">
+                            <img class="img-responsive center-block" src="/main/images/giacomo.jpg" alt="">
                         </div>
                         <div class="team-info">
-                            <h3>Mr B</h3>
+                            <h3>Giacomo Arcaro</h3>
                         </div>
-                        <p class="mb20">Business Man</p>
-                        <ul class="social-icons list-inline list-unstyled">
-                            <li><a href="#"><i class="fa fa-facebook icon-bordered icon-primary icon-xs"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter icon-bordered icon-primary icon-xs"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus icon-bordered icon-primary icon-xs"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
+                        <p class="mb20">co-founder of Black Marketing Guru, one of the most important European Growth Hackers featured on the Financial Times, IlSole24Ore and Los Angeles Times</p>
+                        <ul class="social-icons list-inline list-unstyled">                          
+                            <li><a href="https://twitter.com/giacomoarcaro" target="blank"><i class="fa fa-twitter icon-bordered icon-primary icon-xs"></i></a></li>                            
+                            <li><a href="https://www.linkedin.com/in/giacomo-arcaro-crypto/" target="blank"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12  col-xs-12">
                     <div class="team-member ">
                         <div class="team-img">
-                            <img class="img-responsive center-block" src="/main/images/team/person-3.jpg" alt="">
+                            <img class="img-responsive center-block" src="/main/images/manuel.jpg" alt="">
                         </div>
                         <div class="team-info">
-                            <h3>Mr C</h3>
+                            <h3>Manuel Arlotti</h3>
                         </div>
-                        <p class="mb20">Business Man</p>
+                        <p class="mb20">Sales and marketing advisor for the TOP #100 European Industries.
+#120 most followed profile on LinkedIn Europe, ICO ambassador and Advisor of the TOP #3 Italian ICO</p>
                         <ul class="social-icons list-inline list-unstyled">
-                            <li><a href="#"><i class="fa fa-facebook icon-bordered icon-primary icon-xs"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter icon-bordered icon-primary icon-xs"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus icon-bordered icon-primary icon-xs"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
+                            <li><a href="https://twitter.com/ManuelArlotti" target="blank"><i class="fa fa-twitter icon-bordered icon-primary icon-xs"></i></a></li>                            
+                            <li><a href="https://www.linkedin.com/in/arlottimanuel/" target="blank"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12  col-xs-12">
                     <div class="team-member ">
                         <div class="team-img">
-                            <img class="img-responsive center-block" src="/main/images/team/person-4.jpg" alt="">
+                            <img class="img-responsive center-block" src="/main/images/tonini.jpg" alt="">
                         </div>
                         <div class="team-info">
-                            <h3>Mr D</h3>
+                            <h3>Gianmarco Tonini</h3>
                         </div>
-                        <p class="mb20">Marketing Expert</p>
+                        <p class="mb20">Analysis and Monitoring Expert,one of the italian's biggest expert in analytics</p>
                         <ul class="social-icons list-inline list-unstyled">
-                            <li><a href="#"><i class="fa fa-facebook icon-bordered icon-primary icon-xs"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter icon-bordered icon-primary icon-xs"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus icon-bordered icon-primary icon-xs"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
+                                                        
+                            <li><a href="https://www.linkedin.com/in/gianmarco-tonini/" target="blank"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
                         </ul>
                     </div>
                 </div>
 		        
     		</div>
-    		<div class="row">
-    			<div class="col-md-10 offset-md-1">
-			     	<div class="col-lg-4 col-md-6 col-sm-12  col-xs-12">
-	                    <div class="team-member ">
-	                        <div class="team-img">
-	                            <img class="img-responsive center-block" src="/main/images/team/person-1.jpg" alt="">
-	                        </div>
-	                        <div class="team-info">
-	                            <h3>Mr E</h3>
-	                        </div>
-	                        <p class="mb20">PR Expert</p>
-	                        <ul class="social-icons list-inline list-unstyled">
-	                            <li><a href="#"><i class="fa fa-facebook icon-bordered icon-primary icon-xs"></i></a></li>
-	                            <li><a href="#"><i class="fa fa-twitter icon-bordered icon-primary icon-xs"></i></a></li>
-	                            <li><a href="#"><i class="fa fa-google-plus icon-bordered icon-primary icon-xs"></i></a></li>
-	                            <li><a href="#"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
-	                        </ul>
-	                    </div>
-	                </div>
-	                <div class="col-lg-4 col-md-6 col-sm-12  col-xs-12">
-	                    <div class="team-member ">
-	                        <div class="team-img">
-	                            <img class="img-responsive center-block" src="/main/images/team/person-2.jpg" alt="">
-	                        </div>
-	                        <div class="team-info">
-	                            <h3>Mr F</h3>
-	                        </div>
-	                        <p class="mb20">BlockChain</p>
-	                        <ul class="social-icons list-inline list-unstyled">
-	                            <li><a href="#"><i class="fa fa-facebook icon-bordered icon-primary icon-xs"></i></a></li>
-	                            <li><a href="#"><i class="fa fa-twitter icon-bordered icon-primary icon-xs"></i></a></li>
-	                            <li><a href="#"><i class="fa fa-google-plus icon-bordered icon-primary icon-xs"></i></a></li>
-	                            <li><a href="#"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
-	                        </ul>
-	                    </div>
-	                </div>
-	                <div class="col-lg-4 .col-6 col-md-12 col-sm-12 col-xs-12">
-	                    <div class="team-member ">
-	                        <div class="team-img">
-	                            <img class="img-responsive center-block" src="/main/images/team/person-3.jpg" alt="">
-	                        </div>
-	                        <div class="team-info">
-	                            <h3>Mr G</h3>
-	                        </div>
-	                        <p class="mb20">BackEnd</p>
-	                        <ul class="social-icons list-inline list-unstyled">
-	                            <li><a href="#"><i class="fa fa-facebook icon-bordered icon-primary icon-xs"></i></a></li>
-	                            <li><a href="#"><i class="fa fa-twitter icon-bordered icon-primary icon-xs"></i></a></li>
-	                            <li><a href="#"><i class="fa fa-google-plus icon-bordered icon-primary icon-xs"></i></a></li>
-	                            <li><a href="#"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
-	                        </ul>
-	                    </div>
-	                </div>
-	             
-		        </div>
-    		</div>
+    		
     	</div>
     </section>
-	======================================= 
-    ==End team section==  
-    =======================================-->
 
 
 	<!-- ======================================= 
