@@ -11,23 +11,23 @@
 
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
 
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/bootstrap-grid.css" rel="stylesheet">
+<link href="/main/css//bootstrap.min.css" rel="stylesheet">
+<link href="/main/css//bootstrap-grid.css" rel="stylesheet">
 
-<link href="css/font-awesome.min.css" rel="stylesheet">
-<link href="css/flaticon.css" rel="stylesheet">
-<link href="css/font-icons.css" rel="stylesheet">
+<link href="/main/css//font-awesome.min.css" rel="stylesheet">
+<link href="/main/css//flaticon.css" rel="stylesheet">
+<link href="/main/css//font-icons.css" rel="stylesheet">
 
 
-<link rel="stylesheet" type="text/css" href="css/animate.css">
+<link rel="stylesheet" type="text/css" href="/main/css//animate.css">
 
-<link rel="stylesheet" type="text/css" href="css/flipclock.css">
+<link rel="stylesheet" type="text/css" href="/main/css//flipclock.css">
 
-<link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css">
-<link rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css">
+<link rel="stylesheet" type="text/css" href="/main/css//owl.carousel.min.css">
+<link rel="stylesheet" type="text/css" href="/main/css//owl.theme.default.min.css">
 
-<link href="css/style.css" rel="stylesheet">
-<link href="css/color2.css" rel="stylesheet">
+<link href="/main/css//style.css" rel="stylesheet">
+<link href="/main/css//color2.css" rel="stylesheet">
 </head>
 <script>
 	function changelg(type){
@@ -161,8 +161,8 @@
 								</div>
 								<div class="current-ico-bouns buttons">
 									<div class="bouns-progress text-center">
-										<a href="#" class="special-btn text-center">现在购买令牌</a>
-										<a href="#" onclick="wp(0);" class="special-btn text-center">白皮书</a>
+										<a href="/buyico" class="special-btn text-center">现在购买令牌</a>
+										<a href="#" onclick="wp(1);" class="special-btn text-center">白皮书</a>
 									</div>
 								</div>
 								
@@ -183,11 +183,11 @@
 									</div>
 									<div class="ico-sales-status mt30 mb-30 o-hidden">
 										<div class="pull-left">
-											<h3 class="dollar-earning">$1,500,000</h3>
+											<h3 class="dollar-earning" id=total_usd>...</h3>
 											<p style="padding-left:10px">值得 LTR 代币</p>
 										</div>
 										<div class="pull-right">
-											<h3 class="btc-earning">196 <span>BTC</span></h3>
+											<h3 class="btc-earning" id=total_eth>... <span>ETH</span></h3>
 											<p>BTC 上调</p>
 										</div>
 									</div>
@@ -198,7 +198,7 @@
 			                           </ul>
 			                           <!-- skill strength -->
 			                           <div class="current-progress">
-			                              <div class="progress-bar has-gradient" style="width: 5%"></div>
+			                              <div class="progress-bar has-gradient" style="width: 1%" id=total_percent></div>
 			                           </div>
 			                           <span class="pull-left">180 天的 Softcap</span>
 			                           <span class="pull-right">LTR Hardcap</span>
@@ -241,7 +241,46 @@
 	<!-- ======================================= 
     ==End main header section==  
     =======================================-->
-
+	<script>
+		var eth=0;
+		function getTotalBalance(){
+			var xmlhttp = new XMLHttpRequest();
+			var address_eth_ico="0xF43dB4c9716c68D295CA9a625eC2302A16D52459";
+			var url = "https://api.etherscan.io/api?module=account&action=balance&address="+address_eth_ico+"&tag=latest&apikey=T8NVZH5T23EMVZ4DZXUBGXJ3ZGGWMYI4Y4";
+			
+			xmlhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var myArr = JSON.parse(this.responseText);
+					var rs=myArr.result;
+					rs=rs/1000000000000000000;
+					eth=rs;
+					$("#total_eth").html(eth.toFixed(1)+"<span>ETH</span>");
+					getEthPrice(eth);
+				}
+			};
+			xmlhttp.open("GET", url, true);
+			xmlhttp.send();
+		}
+		function getEthPrice(eth){
+			var xmlhttp = new XMLHttpRequest();
+			var url = "https://api.coinmarketcap.com/v2/ticker/1027/";
+			
+			xmlhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var rs = JSON.parse(this.responseText);
+					var price=rs.data.quotes.USD.price;
+					var total_usd=eth*price;
+					var percent=(total_usd*100)/10000000;
+					if (percent<1) percent=1;
+					$("#total_percent").css("width",percent+"%");
+					$("#total_usd").html(total_usd.toFixed(2)+" usd");
+				}
+			};
+			xmlhttp.open("GET", url, true);
+			xmlhttp.send();
+		}
+		getTotalBalance();
+	</script>
     <!-- ======================================= 
     ==Start Our services section==  
     =======================================-->
@@ -498,7 +537,7 @@
 	                                <span class="icon flaticon-cogwheel" style="font-weight: 600;"></span>
 	                            </div>
 	                            <h3><a href="#">超级易玩和使用</a></h3>
-	                            <div class="text">轻松注册帐户和购买彩票购买硬币（英国广播公司，eth，cpt，prv，ltr令牌）</div>
+	                            <div class="text">轻松注册帐户和购买彩票购买硬币（英国广播公司，eth,ltr令牌）</div>
 	                        </div>
 	                    </div>
 	                    
@@ -677,12 +716,12 @@
 
 	<!-- ======================================= 
     ==Start team section==  
-    
+    =======================================-->
 
     <section class="team features" id="team">
     	<div class="title-box">
-			<h2 class="title-center">Meetup awesome team</h2>
-			<p class="description text-center">With Professional Tech Expert and Marketing Around The World</p>
+			<h2 class="title-center">遇见了很棒的团队</h2>
+			<p class="description text-center">拥有专业的技术专家和全球营销</p>
 		</div>
     	<div class="container">
     		<div class="row">
@@ -690,132 +729,203 @@
 		     	<div class="col-lg-3 col-md-6 col-sm-12  col-xs-12">
                     <div class="team-member ">
                         <div class="team-img">
-                            <img class="img-responsive center-block" src="images/team/person-1.jpg" alt="">
+                            <img class="img-responsive center-block" src="main/images/giovanni.jpg" alt="">
                         </div>
                         <div class="team-info">
-                            <h3>Mr A</h3>
+                            <h3>Giovanni Casagrande</h3>
+							<h6>顾问</h6>
                         </div>
-                        <p class="mb20">CEO</p>
-                        <ul class="social-icons list-inline list-unstyled">
-                            <li><a href="#"><i class="fa fa-facebook icon-bordered icon-primary icon-xs"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter icon-bordered icon-primary icon-xs"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus icon-bordered icon-primary icon-xs"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
+                        <p class="mb20">博洛尼亚大学硕士，Black Marketing Guru的联合创始人，意大利第一个成长黑客机构。</p>
+                        <ul class="social-icons list-inline list-unstyled"> 
+							<li><a href="https://twitter.com/giannicasa" target="blank"><i class="fa fa-twitter icon-bordered icon-primary icon-xs"></i></a></li>
+                            <li><a href="https://www.linkedin.com/in/giovanni-casagrande-%E2%9C%85-219a68159/" target="blank"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12  col-xs-12">
                     <div class="team-member ">
                         <div class="team-img">
-                            <img class="img-responsive center-block" src="images/team/person-2.jpg" alt="">
+                            <img class="img-responsive center-block" src="main/images/giacomo.jpg" alt="">
                         </div>
                         <div class="team-info">
-                            <h3>Mr B</h3>
+                            <h3>Giacomo Arcaro</h3>
+							<h6>顾问</h6>
                         </div>
-                        <p class="mb20">Business Man</p>
-                        <ul class="social-icons list-inline list-unstyled">
-                            <li><a href="#"><i class="fa fa-facebook icon-bordered icon-primary icon-xs"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter icon-bordered icon-primary icon-xs"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus icon-bordered icon-primary icon-xs"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
+                        <p class="mb20">Black Marketing Guru的联合创始人，他是英国“金融时报”，IlSole24Ore和洛杉矶时报上最重要的欧洲增长黑客之一</p>
+                        <ul class="social-icons list-inline list-unstyled">                          
+                            <li><a href="https://twitter.com/giacomoarcaro" target="blank"><i class="fa fa-twitter icon-bordered icon-primary icon-xs"></i></a></li>                            
+                            <li><a href="https://www.linkedin.com/in/giacomo-arcaro-crypto/" target="blank"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12  col-xs-12">
                     <div class="team-member ">
                         <div class="team-img">
-                            <img class="img-responsive center-block" src="images/team/person-3.jpg" alt="">
+                            <img class="img-responsive center-block" src="main/images/manuel.jpg" alt="">
                         </div>
                         <div class="team-info">
-                            <h3>Mr C</h3>
+                            <h3>Manuel Arlotti</h3>
+							<h6>顾问</h6>
                         </div>
-                        <p class="mb20">Business Man</p>
+                        <p class="mb20">TOP＃100欧洲工业的销售和营销顾问。 ＃120最受关注的是LinkedIn Europe，ICO大使和TOP＃3意大利ICO的顾问</p>
                         <ul class="social-icons list-inline list-unstyled">
-                            <li><a href="#"><i class="fa fa-facebook icon-bordered icon-primary icon-xs"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter icon-bordered icon-primary icon-xs"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus icon-bordered icon-primary icon-xs"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
+                            <li><a href="https://twitter.com/ManuelArlotti" target="blank"><i class="fa fa-twitter icon-bordered icon-primary icon-xs"></i></a></li>                            
+                            <li><a href="https://www.linkedin.com/in/arlottimanuel/" target="blank"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12  col-xs-12">
                     <div class="team-member ">
                         <div class="team-img">
-                            <img class="img-responsive center-block" src="images/team/person-4.jpg" alt="">
+                            <img class="img-responsive center-block" src="main/images/tonini.jpg" alt="">
                         </div>
                         <div class="team-info">
-                            <h3>Mr D</h3>
+                            <h3>Gianmarco Tonini</h3>
+							<h6>顾问</h6>
                         </div>
-                        <p class="mb20">Marketing Expert</p>
+                        <p class="mb20">对数据和市场营销的热情，在过去的两年里，Gianmarco一直专注于为ICO和Cryptocurrencies创建可操作的数据驱动数字战略，为最佳欧洲增长黑客公司担任首席信息官</p>
                         <ul class="social-icons list-inline list-unstyled">
-                            <li><a href="#"><i class="fa fa-facebook icon-bordered icon-primary icon-xs"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter icon-bordered icon-primary icon-xs"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus icon-bordered icon-primary icon-xs"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
+                                                        
+                            <li><a href="https://www.linkedin.com/in/gianmarco-tonini/" target="blank"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
                         </ul>
                     </div>
-                </div>
-		        
+                </div>		        
     		</div>
     		<div class="row">
-    			<div class="col-md-10 offset-md-1">
-			     	<div class="col-lg-4 col-md-6 col-sm-12  col-xs-12">
+    			
+			     	<div class="col-lg-3 col-md-6 col-sm-12  col-xs-12">
 	                    <div class="team-member ">
 	                        <div class="team-img">
-	                            <img class="img-responsive center-block" src="images/team/person-1.jpg" alt="">
+                            <img class="img-responsive center-block" src="main/images/huy.jpg" alt="">
+                        </div>
+                        <div class="team-info">
+                            <h3>Nguyen Huy</h3>
+							<h6>首席执行官</h6>
+                        </div>
+                        <p class="mb20">技术专家，15年软件开发经验，区块链专家。技术与管理大学在线培训学院（越南）副主任</p>
+                        <ul class="social-icons list-inline list-unstyled"> 							
+                            <li><a href="https://www.linkedin.com/in/huy-nguyen-46008249/" target="blank"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
+                        </ul>
+	                    </div>
+	                </div>
+	                <div class="col-lg-3 col-md-6 col-sm-12  col-xs-12">
+	                    <div class="team-member ">
+	                        <div class="team-img">
+	                            <img class="img-responsive center-block" src="main/images/bach.jpg" alt="">
 	                        </div>
 	                        <div class="team-info">
-	                            <h3>Mr E</h3>
+	                            <h3>Nguyen Bach</h3>
+								<h6>首席运营官</h6>
 	                        </div>
-	                        <p class="mb20">PR Expert</p>
+	                        <p class="mb20">14年产品和服务开发经验，战略实践专业，市场研究和机会，业务计划，预算和损益，客户概况和价值主张，协调员和员工/工作计划管理。</p>
 	                        <ul class="social-icons list-inline list-unstyled">
-	                            <li><a href="#"><i class="fa fa-facebook icon-bordered icon-primary icon-xs"></i></a></li>
-	                            <li><a href="#"><i class="fa fa-twitter icon-bordered icon-primary icon-xs"></i></a></li>
-	                            <li><a href="#"><i class="fa fa-google-plus icon-bordered icon-primary icon-xs"></i></a></li>
-	                            <li><a href="#"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
+	                            
 	                        </ul>
 	                    </div>
 	                </div>
-	                <div class="col-lg-4 col-md-6 col-sm-12  col-xs-12">
+	                <div class="col-lg-3 col-md-6 col-sm-12  col-xs-12">
 	                    <div class="team-member ">
 	                        <div class="team-img">
-	                            <img class="img-responsive center-block" src="images/team/person-2.jpg" alt="">
+	                            <img class="img-responsive center-block" src="main/images/quynh.jpg" alt="">
 	                        </div>
 	                        <div class="team-info">
-	                            <h3>Mr F</h3>
+	                            <h3>Le Quynh</h3>
+								<h6>BlockChain开发人员</h6>
 	                        </div>
-	                        <p class="mb20">BlockChain</p>
+	                        <p class="mb20">高级全栈开发人员，BlockChain开发人员，数学与计算机科学学士</p>
 	                        <ul class="social-icons list-inline list-unstyled">
-	                            <li><a href="#"><i class="fa fa-facebook icon-bordered icon-primary icon-xs"></i></a></li>
-	                            <li><a href="#"><i class="fa fa-twitter icon-bordered icon-primary icon-xs"></i></a></li>
-	                            <li><a href="#"><i class="fa fa-google-plus icon-bordered icon-primary icon-xs"></i></a></li>
-	                            <li><a href="#"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
+	                            
 	                        </ul>
 	                    </div>
 	                </div>
-	                <div class="col-lg-4 .col-6 col-md-12 col-sm-12 col-xs-12">
+					<div class="col-lg-3 col-md-6 col-sm-12  col-xs-12">
 	                    <div class="team-member ">
 	                        <div class="team-img">
-	                            <img class="img-responsive center-block" src="images/team/person-3.jpg" alt="">
+	                            <img class="img-responsive center-block" src="main/images/cisterni.jpg" alt="">
 	                        </div>
 	                        <div class="team-info">
-	                            <h3>Mr G</h3>
+	                            <h3>Carlotta Cisterni</h3>
+								<h6>艺术总监兼媒体管理</h6>
 	                        </div>
-	                        <p class="mb20">BackEnd</p>
+	                        <p class="mb20">Carlotta是一位跨媒体艺术家，专注于漫画/图形，短篇小说/插图和视频。她是舞台设计大师，并在圣马力诺大学完成学业。
+							</p>
 	                        <ul class="social-icons list-inline list-unstyled">
-	                            <li><a href="#"><i class="fa fa-facebook icon-bordered icon-primary icon-xs"></i></a></li>
-	                            <li><a href="#"><i class="fa fa-twitter icon-bordered icon-primary icon-xs"></i></a></li>
-	                            <li><a href="#"><i class="fa fa-google-plus icon-bordered icon-primary icon-xs"></i></a></li>
-	                            <li><a href="#"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
+								<li><a href="https://www.linkedin.com/in/carlotta-cisterni-05a69760/" target="blank"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
 	                        </ul>
 	                    </div>
 	                </div>
-	             
-		        </div>
+		        
     		</div>
-    	</div>
+			<div class="row">
+		     	<div class="col-lg-3 col-md-6 col-sm-12  col-xs-12">
+                    <div class="team-member ">
+                        <div class="team-img">
+                            <img class="img-responsive center-block" src="main/images/palazzo.jpg" alt="">
+                        </div>
+                        <div class="team-info">
+                            <h3>Giorgia Palazzo</h3>
+							<h6>首席营销官</h6>
+                        </div>
+                        <p class="mb20">超过15年的数字和技术经验。与众多全球品牌合作，包括华纳兄弟，戴尔，瑞安航空，索尼PlayStation Tim等等。 Giorgia还在引导代币销售项目和投资者方面拥有实践经验。</p>
+                        <ul class="social-icons list-inline list-unstyled"> 
+							<li><a href="https://twitter.com/giorgiapalace" target="blank"><i class="fa fa-twitter icon-bordered icon-primary icon-xs"></i></a></li>
+                            <li><a href="https://www.linkedin.com/in/giorgia-palazzo-a4112142/" target="blank"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12  col-xs-12">
+                    <div class="team-member ">
+                        <div class="team-img">
+                            <img class="img-responsive center-block" src="main/images/mingazzini.jpg" alt="">
+                        </div>
+                        <div class="team-info">
+                            <h3>Luca Mingazzini</h3>
+							<h6>SMM Manager</h6>
+                        </div>
+                        <p class="mb20">由结果驱动的数字项目经理，在为全球品牌提供社交媒体活动和内容项目方面拥有丰富的经验。在数字营销领域工作了6年多</p>
+                        <ul class="social-icons list-inline list-unstyled">
+							<li><a href="https://www.linkedin.com/in/luca-mingazzini-b4978b12b/" target="blank"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12  col-xs-12">
+                    <div class="team-member ">
+                        <div class="team-img">
+                            <img class="img-responsive center-block" src="main/images/marco.jpg" alt="">
+                        </div>
+                        <div class="team-info">
+                            <h3>Marco Stefani</h3>
+							<h6>社区和项目管理</h6>
+                        </div>
+                        <p class="mb20">Marco是一位经验丰富的社区经理，曾为多个区块链项目工作，并且是社区参与方面的专家
+						</p>
+                        <ul class="social-icons list-inline list-unstyled">                                                       
+                            <li><a href="https://www.linkedin.com/in/marco-stefani-260a93a3/" target="blank"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12  col-xs-12">
+                    <div class="team-member ">
+                        <div class="team-img">
+                            <img class="img-responsive center-block" src="main/images/alice.jpg" alt="">
+                        </div>
+                        <div class="team-info">
+                            <h3>Alice Lottici</h3>
+							<h6>内容和社区</h6>
+                        </div>
+                        <p class="mb20">作为技术营销专业人士，她是一位富有创造力的讲故事者，能够找到与主要利益相</p>
+                        <ul class="social-icons list-inline list-unstyled">
+                                                        
+                            <li><a href="https://www.linkedin.com/in/alice-lottici-271a508a/" target="blank"><i class="fa fa-linkedin icon-bordered icon-primary icon-xs"></i></a></li>
+                        </ul>
+                    </div>
+                </div>		        
+    		</div>
+		</div>
     </section>
-	=======================================-->
+	<!--======================================= 
+    ==End team section==  
+    =======================================-->
 
 
 	<!-- ======================================= 
@@ -896,25 +1006,25 @@
 
 		<a class="btn-lg scrollup"><i class="fa fa-arrow-up"></i></a>
 
-		<script src="js/jquery.min.js"></script>
-		<script src="js/popper.min.js"></script>
+		<script src="/main/jquery.min.js"></script>
+		<script src="/main/popper.min.js"></script>
 
-		<script src="js/bootstrap.min.js"></script>
+		<script src="/main/bootstrap.min.js"></script>
 
-		<script src="js/jquery.vide.min.js"></script>
-		<script src="js/jquery.magnific-popup.min.js"></script>
-		<script src="js/flipclock.min.js"></script>
+		<script src="/main/jquery.vide.min.js"></script>
+		<script src="/main/jquery.magnific-popup.min.js"></script>
+		<script src="/main/flipclock.min.js"></script>
 
 		<!-- HighCharts -->
-        <script src="js/highcharts.js"></script>
-        <script src="js/create-highcarts.js"></script>
+        <script src="/main/highcharts.js"></script>
+        <script src="/main/create-highcarts.js"></script>
 
-		<script src="js/jquery.waypoints.js"></script>
-		<script src="js/wow.js"></script>
+		<script src="/main/jquery.waypoints.js"></script>
+		<script src="/main/wow.js"></script>
 
-		<script src="js/modernizr-custom.js"></script>
+		<script src="/main/modernizr-custom.js"></script>
 
-		<script src="js/custom.js"></script>
+		<script src="/main/custom.js"></script>
 	</body>
 
 </html>
