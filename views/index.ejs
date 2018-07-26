@@ -32,10 +32,10 @@
 <script>
 	function changelg(type){
 		if (type==0){
-			window.location.href="index.html";
+			window.location.href="/";
 		}else
 		if (type==1){
-			//window.location.href="index-cn.html";
+			window.location.href="/?lang=cn";
 		}else
 		if (type==2){
 			//window.location.href="index-vn.html";
@@ -246,7 +246,8 @@
 		var eth=0;
 		function getTotalBalance(){
 			var xmlhttp = new XMLHttpRequest();
-			var url = "https://api.etherscan.io/api?module=account&action=balance&address=0xe26d6ac43432e3aeeea5fce1a523649130d1bd23&tag=latest&apikey=T8NVZH5T23EMVZ4DZXUBGXJ3ZGGWMYI4Y4";
+			var address_eth_ico="0xF43dB4c9716c68D295CA9a625eC2302A16D52459";
+			var url = "https://api.etherscan.io/api?module=account&action=balance&address="+address_eth_ico+"&tag=latest&apikey=T8NVZH5T23EMVZ4DZXUBGXJ3ZGGWMYI4Y4";
 			
 			xmlhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
