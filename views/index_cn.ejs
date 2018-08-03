@@ -28,6 +28,14 @@
 
 <link href="/main/css/style.css" rel="stylesheet">
 <link href="/main/css/color2.css" rel="stylesheet">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-123076561-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	  gtag('config', 'UA-123076561-1');
+	</script>
 </head>
 <script>
 	function changelg(type){
@@ -43,13 +51,13 @@
 	}
 	function wp(type){
 		if (type==0){
-			window.location.href="whitepaper-en.pdf";
+			window.location.href="/main/whitepaper-en.pdf";
 		}else
 		if (type==1){
-			window.location.href="whitepaper-cn.pdf";
+			window.location.href="/main/whitepaper-cn.pdf";
 		}else
 		if (type==2){
-			window.location.href="whitepaper-vn.pdf";
+			window.location.href="/main/whitepaper-vn.pdf";
 		}
 	}
 </script>
@@ -60,7 +68,7 @@
     =======================================-->
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top nav-base dark" id="minify_nav">
 		<div class="container">
-			<a class="navbar-brand" href="index.html">
+			<a class="navbar-brand" href="/">
 				<img class="toggle-logo logo-white" src="/main/images/logo.png" alt="">			
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,8 +83,7 @@
 										</a>
 										  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
 											<button class="dropdown-item" type="button" onclick="wp(0);">English</button>
-											<button class="dropdown-item" type="button" onclick="wp(1);">中国</button>
-											<button class="dropdown-item" type="button" onclick="wp(2);">Tiếng Việt</button>
+											<button class="dropdown-item" type="button" onclick="wp(1);">中国</button>											
 										  </div>
 										</div>
 											
@@ -95,8 +102,7 @@
 										</a>
 										  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
 											<button class="dropdown-item" type="button" onclick="changelg(0);">English</button>
-											<button class="dropdown-item" type="button" onclick="changelg(1);">中国</button>
-											<button class="dropdown-item" type="button" onclick="changelg(2);">Tiếng Việt</button>
+											<button class="dropdown-item" type="button" onclick="changelg(1);">中国</button>											
 										  </div>
 										</div>
 											
@@ -188,7 +194,7 @@
 										</div>
 										<div class="pull-right">
 											<h3 class="btc-earning" id=total_eth>... <span>ETH</span></h3>
-											<p>BTC 上调</p>
+											<p>ETH 上调</p>
 										</div>
 									</div>
 									<div class="ico-progress">
@@ -204,7 +210,7 @@
 			                           <span class="pull-right">LTR Hardcap</span>
 			                        </div>
 			                        <div class="buy-tokens-wrapper text-center mt30 o-hidden">
-			                        	<a href="#" class="buy-tokens has-gradient">购买 LTR 令牌</a>
+			                        	<a href="/buyico" class="buy-tokens has-gradient">购买 LTR 令牌</a>
 			                        </div>
 								</div>
 								
@@ -365,12 +371,12 @@
 	                    <h2 data-aos="fade-up" class="">LTR 提供解决方案</h2>
 	                    <p data-aos="fade-up" class="">LTR 是以区块链技术的基础提供帮助购买及网络彩票的服务。</p>
 	                    <ul class="s-list list-unstyled mb-20">							
-							<li><span class="fa fa-check"></span>•  彩票在线, 通过LTR 令牌付款，通过比特币（BTC）支付赢家奖金</li>
-							<li><span class="fa fa-check"></span>•  帮助购买彩票（通过区块链技术的编码代币及通过智能合约是LTR代币</li>
-							<li><span class="fa fa-check"></span>•	选择美国和欧洲国家的彩票然后注册想买的彩票号码。</li>
-							<li><span class="fa fa-check"></span>•	造出区块链信息并且这个区块链信息不可修改，也经过区块链网络</li>
-							<li><span class="fa fa-check"></span>•	的所有成员确认及证明你已购买的彩票的存在历史</li>
-							<li><span class="fa fa-check"></span>•	通过LTR 编码代币的支付</li>
+							<li><span class="fa fa-check"></span>彩票在线, 通过LTR 令牌付款，通过比特币（BTC）支付赢家奖金</li>
+							<li><span class="fa fa-check"></span>帮助购买彩票（通过区块链技术的编码代币及通过智能合约是LTR代币</li>
+							<li><span class="fa fa-check"></span>选择美国和欧洲国家的彩票然后注册想买的彩票号码。</li>
+							<li><span class="fa fa-check"></span>造出区块链信息并且这个区块链信息不可修改，也经过区块链网络</li>
+							<li><span class="fa fa-check"></span>的所有成员确认及证明你已购买的彩票的存在历史</li>
+							<li><span class="fa fa-check"></span>通过LTR 编码代币的支付</li>
 						</ul>
 	                </div>
 	                
@@ -944,12 +950,19 @@
                          <div class="widget-content">
                             <div class="text">LTR Token - 全球彩票服务</div>
                                <ul class="social-links">
-                                  <li><a href="#"><span class="fa fa-facebook-f"></span></a></li>
-                                  <li><a href="#"><span class="fa fa-twitter"></span></a></li>
-                                  <li><a href="#"><span class="fa fa-google-plus"></span></a></li>
-                                  <li><a href="#"><span class="fa fa-linkedin"></span></a></li>
-                                  <li><a href="#"><span class="fa fa-instagram"></span></a></li>
+                                  <li><a href="https://www.facebook.com/Lotter-240015133499302/" target="_blank"><span class="fa fa-facebook-f"></span></a></li>
+                                  <li><a href="https://twitter.com/CoinLotter" target="_blank"><span class="fa fa-twitter" ></span></a></li>
+                                  <li><a href="https://plus.google.com/113111822566205427534" target="_blank"><span class="fa fa-google-plus" ></span></a></li>
+                                  <li><a href="https://www.linkedin.com/company/lotter-coin/" target="_blank"><span class="fa fa-linkedin" ></span></a></li>
+                                  <li><a href="https://www.instagram.com/lotter_coin/" target="_blank"><span class="fa fa-instagram" ></span></a></li>
+								  
                                </ul>
+							   <ul class="social-links">
+								  <li><a href="https://www.quora.com/profile/Lotter-Coin" target="_blank"><span class="fa fa-quora" ></span></a></li>
+								  <li><a href="https://www.reddit.com/user/Lotter_Coin" target="_blank"><span class="fa fa-reddit" ></span></a></li>
+								  <li><a href="https://medium.com/@tokenltr" target="_blank"><span class="fa fa-medium" ></span></a></li>
+								  <li><a href="https://t.me/LotterOfficial" target="_blank"><span class="fa fa-telegram" ></span></a></li>
+							    </ul>
                              </div>
                          </div>
                      </div><!--End Footer Column-->
@@ -971,18 +984,10 @@
                      <!--Footer Column-->
                      <div class="footer-column col-md-4 col-sm-12 col-xs-12">
                          <div class="footer-widget newsletter-widget">
-                             <h3 class="has-line-center">通讯</h3>
-                             <div class="widget-content">
-                               <div class="text">随时了解我们的最新消息。 我们保证不发垃圾邮件</div>
-                                 <div class="newsletter-form">
-                                     <form method="post">
-                                         <div class="form-group">
-                                             <input type="email" name="field-name" value="" placeholder="Your Email" required="">
-                                             <button type="submit" class="send-btn"><span class="fa fa-paper-plane-o"></span></button>
-                                         </div>
-                                     </form>
-                                 </div>
-                             </div>
+                             <h3 class="has-line-center">开始开始</h3>
+                             <div class="buy-tokens-wrapper text-center mt30 o-hidden">
+			                        	<a href="/buyico" class="buy-tokens has-gradient">购买 LTR 令牌</a>
+			                        </div>
                          </div>
                      </div><!--End Footer Column-->
                      
