@@ -190,7 +190,7 @@
 									<div class="ico-sales-status mt30 mb-30 o-hidden">
 										<div class="pull-left">
 											<h3 class="dollar-earning" id=total_usd>...</h3>
-											<p style="padding-left:10px">值得 LTR 代币</p>
+											<h4 style="padding-left:10px" id=total_investor>..投资者</p>
 										</div>
 										<div class="pull-right">
 											<h3 class="btc-earning" id=total_eth>... <span>ETH</span></h3>
@@ -249,23 +249,27 @@
     =======================================-->
 	<script>
 		var eth=0;
-		function getTotalBalance(){
-			var xmlhttp = new XMLHttpRequest();
-			var address_eth_ico="0xF43dB4c9716c68D295CA9a625eC2302A16D52459";
-			var url = "https://api.etherscan.io/api?module=account&action=balance&address="+address_eth_ico+"&tag=latest&apikey=T8NVZH5T23EMVZ4DZXUBGXJ3ZGGWMYI4Y4";
-			
+		function getTotal(){		   
+			var xmlhttp = new XMLHttpRequest();			
+			var url = "https://ltrcoin.com/api/get_sum_ETH_Total_Email_Buy_LTR";			
 			xmlhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
+			//alert(this.status+","+this.readyState);
+			if (this.readyState == 4) {// && this.status == 200
+				//alert(this.responseText);
 				var myArr = JSON.parse(this.responseText);
-					var rs=myArr.result;
-					rs=rs/1000000000000000000;
+					var rs=myArr.TotalETH;	
+					var investors=myArr.TotalEmailBuyLTR;					
 					eth=rs;
 					$("#total_eth").html(eth.toFixed(1)+"<span>ETH</span>");
+					$("#total_investor").html(investors+"<span> 投资者</span>");
+					
 					getEthPrice(eth);
 				}
 			};
+			
 			xmlhttp.open("GET", url, true);
 			xmlhttp.send();
+			
 		}
 		function getEthPrice(eth){
 			var xmlhttp = new XMLHttpRequest();
@@ -285,7 +289,7 @@
 			xmlhttp.open("GET", url, true);
 			xmlhttp.send();
 		}
-		getTotalBalance();
+		getTotal();
 	</script>
     <!-- ======================================= 
     ==Start Our services section==  
@@ -974,7 +978,7 @@
                              <div class="widget-content">
                                  <ul class="contact-info">
                                      <li><div class="icon"><span class="ui-computer-screen-2"></span></div></li>
-                                     <li>Hong Kong</li>                                     
+                                     <li>LtrCoin.Com由LTR TECH LIMITED运营，其注册地址为Tera Building, 87 Wing Lok Street, Hong Kong</li>                                     
                                      <li>admin@ltrcoin.com</li>
                                  </ul>
                              </div>
