@@ -18,7 +18,7 @@
 <link href="/main/css/flaticon.css" rel="stylesheet">
 <link href="/main/css/font-icons.css" rel="stylesheet">
 
-
+<script src="/main/js/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/main/css/animate.css">
 
 <link rel="stylesheet" type="text/css" href="/main/css/flipclock.css">
@@ -46,7 +46,7 @@
 			window.location.href="/?lang=cn";
 		}else
 		if (type==2){
-			//window.location.href="index-vn.html";
+			//window.location.href="/?lang=vn";
 		}
 	}
 	function wp(type){
@@ -83,13 +83,14 @@
 										</a>
 										  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
 											<button class="dropdown-item" type="button" onclick="wp(0);">English</button>
-											<button class="dropdown-item" type="button" onclick="wp(1);">中国</button>											
+											<button class="dropdown-item" type="button" onclick="wp(1);">中国</button>
+											<button class="dropdown-item" type="button" onclick="wp(2);">Tiếng Việt</button>											
 										  </div>
 										</div>
 											
 					</li>
-					<li class="nav-ite"><a class="nav-link" href="#start">开始吧<span class="sr-only"></span></a></li>
 					<li class="nav-item"><a class="nav-link" href="#about">关于<span class="sr-only"></span></a></li>
+					<li class="nav-ite"><a class="nav-link" href="#start">开始吧<span class="sr-only"></span></a></li>					
 					<li class="nav-item"><a class="nav-link" href="#ico">分配</a></li>
 					<li class="nav-item"><a class="nav-link" href="#roadmap">路线图<span class="sr-only"></span></a></li>
 					<li class="nav-item"><a class="nav-link" href="#team">球队</a></li>
@@ -182,6 +183,7 @@
 							<div class="content">
 								<div class="conuter-header">
 									<h3 class="text-center">代理销售结束</h3>
+									<h6 class="text-center"><i>我们接受投资 Ethereum</i></h6>
 								</div>
 								<div class="counterdown-content">
 									<div class="clock-wrapper">
@@ -291,6 +293,41 @@
 		}
 		getTotal();
 	</script>
+	<!-- ======================================= 
+    ==Start money-exchange section==  
+    =======================================-->
+	<section class="money-exchange" id="about">
+
+	<img class="bg-shape-bot" src="/main/svg/homepage_bg.svg" alt=" bg bottom">
+	    <div class="container">
+	        <div class="row flex-md-row-reverse">
+	            <div class="col-md-6">
+	                <div class="money-exchange-right">
+	                    <h2 data-aos="fade-up" class="">LTR 提供解决方案</h2>
+	                    <p data-aos="fade-up" class="">LTR 是以区块链技术的基础提供帮助购买及网络彩票的服务。</p>
+	                    <ul class="s-list list-unstyled mb-20">							
+							<li><span class="fa fa-check"></span>彩票在线, 通过LTR 令牌付款，通过比特币（BTC）支付赢家奖金</li>
+							<li><span class="fa fa-check"></span>帮助购买彩票（通过区块链技术的编码代币及通过智能合约是LTR代币</li>
+							<li><span class="fa fa-check"></span>选择美国和欧洲国家的彩票然后注册想买的彩票号码。</li>
+							<li><span class="fa fa-check"></span>造出区块链信息并且这个区块链信息不可修改，也经过区块链网络</li>
+							<li><span class="fa fa-check"></span>的所有成员确认及证明你已购买的彩票的存在历史</li>
+							<li><span class="fa fa-check"></span>通过LTR 编码代币的支付</li>
+						</ul>
+	                </div>
+	                
+	            </div>
+	            <div class="col-md-6">
+	                <div class="money-exchange-left" >
+	                	<img style="max-height: 798px" class="center-block img-responsive" src="/main/images/banner.png" alt="Phone">
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</section>
+	<!-- ======================================= 
+    ==End money-exchange section==  
+    =======================================-->
+	
     <!-- ======================================= 
     ==Start Our services section==  
     =======================================-->
@@ -362,40 +399,7 @@
 
 	<div class="clearfix"></div>
 
-    <!-- ======================================= 
-    ==Start money-exchange section==  
-    =======================================-->
-	<section class="money-exchange" id="about">
-
-	<img class="bg-shape-bot" src="/main/svg/homepage_bg.svg" alt=" bg bottom">
-	    <div class="container">
-	        <div class="row flex-md-row-reverse">
-	            <div class="col-md-6">
-	                <div class="money-exchange-right">
-	                    <h2 data-aos="fade-up" class="">LTR 提供解决方案</h2>
-	                    <p data-aos="fade-up" class="">LTR 是以区块链技术的基础提供帮助购买及网络彩票的服务。</p>
-	                    <ul class="s-list list-unstyled mb-20">							
-							<li><span class="fa fa-check"></span>彩票在线, 通过LTR 令牌付款，通过比特币（BTC）支付赢家奖金</li>
-							<li><span class="fa fa-check"></span>帮助购买彩票（通过区块链技术的编码代币及通过智能合约是LTR代币</li>
-							<li><span class="fa fa-check"></span>选择美国和欧洲国家的彩票然后注册想买的彩票号码。</li>
-							<li><span class="fa fa-check"></span>造出区块链信息并且这个区块链信息不可修改，也经过区块链网络</li>
-							<li><span class="fa fa-check"></span>的所有成员确认及证明你已购买的彩票的存在历史</li>
-							<li><span class="fa fa-check"></span>通过LTR 编码代币的支付</li>
-						</ul>
-	                </div>
-	                
-	            </div>
-	            <div class="col-md-6">
-	                <div class="money-exchange-left" >
-	                	<img style="max-height: 798px" class="center-block img-responsive" src="/main/images/banner.png" alt="Phone">
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-	</section>
-	<!-- ======================================= 
-    ==End money-exchange section==  
-    =======================================-->
+    
 
     <!-- ======================================= 
     ==Start ICO Distribution section==  
@@ -978,7 +982,7 @@
                              <div class="widget-content">
                                  <ul class="contact-info">
                                      <li><div class="icon"><span class="ui-computer-screen-2"></span></div></li>
-                                     <li>LtrCoin.Com由LTR TECH LIMITED运营，其注册地址为Tera Building, 87 Wing Lok Street, Hong Kong</li>                                     
+                                     <li>LTRCoin.Com由LTR TECH LIMITED运营，其注册地址为Tera Building, 87 Wing Lok Street, Hong Kong</li>                                     
                                      <li>admin@ltrcoin.com</li>
                                  </ul>
                              </div>
@@ -1015,7 +1019,7 @@
 
 		<a class="btn-lg scrollup"><i class="fa fa-arrow-up"></i></a>
 
-		<script src="/main/js/jquery.min.js"></script>
+		<!-- <script src="/main/js/jquery.min.js"></script>-->
 		<script src="/main/js/popper.min.js"></script>
 
 		<script src="/main/js/bootstrap.min.js"></script>
